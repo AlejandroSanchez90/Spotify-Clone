@@ -9,8 +9,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        // disabled={disabled}
         disabled={disabled}
+        {...props}
         ref={ref}
         type={type}
         className={twMerge(
