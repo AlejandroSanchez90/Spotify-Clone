@@ -22,12 +22,10 @@ function Header({ children, className }: HeaderProps) {
 
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
-  console.log(user);
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
     router.refresh();
-
     if (error) {
       toast.error(error.message);
     } else {
@@ -77,7 +75,7 @@ function Header({ children, className }: HeaderProps) {
                 </Button>
               </div>
               <div className=''>
-                <Button className='bg-white px-6 py-2' onClick={() => {}}>
+                <Button className='bg-white px-6 py-2' onClick={onOpen}>
                   Log in
                 </Button>
               </div>

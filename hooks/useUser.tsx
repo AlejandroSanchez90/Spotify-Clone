@@ -17,8 +17,6 @@ export interface Props {
 }
 
 export function MyUserContextProvider(props: Props) {
-  console.log(props);
-
   const { session, isLoading: isLoadingUser, supabaseClient: supabase } = useSessionContext();
 
   const user = useSupaUser();
