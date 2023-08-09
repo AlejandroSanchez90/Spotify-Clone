@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 type Props = {
   song: Song;
-  onClick: (id: string) => void;
+  onClick?: (id: string) => void;
 };
 
 function MediaItem({ song, onClick }: Props) {

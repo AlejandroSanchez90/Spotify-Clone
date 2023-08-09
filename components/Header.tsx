@@ -11,6 +11,7 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useUser } from '@/hooks/useUser';
 import { FaUserAlt } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
+import Link from 'next/link';
 interface HeaderProps {
   children: React.ReactNode;
   className?: string;
@@ -51,10 +52,14 @@ function Header({ children, className }: HeaderProps) {
         {/* Mobile */}
         <div className='flex md:hidden gap-x-2 items-center'>
           <button className='rounded-full p-2 bg-white items-center justify-center hover:opacity-75 transition'>
-            <HiHome className='text-black' size={20} />
+            <Link href='/'>
+              <HiHome className='text-black' size={20} />
+            </Link>
           </button>
           <button className='rounded-full p-2 bg-white items-center justify-center hover:opacity-75 transition'>
-            <BiSearch className='text-black' size={20} />
+            <Link href='/search'>
+              <BiSearch className='text-black' size={20} />
+            </Link>
           </button>
         </div>
         <div className='flex justify-between items-center gap-x-4'>
