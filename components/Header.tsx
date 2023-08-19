@@ -12,12 +12,14 @@ import { useUser } from '@/hooks/useUser';
 import { FaUserAlt } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import Link from 'next/link';
+import usePlayer from '@/hooks/usePlayer';
 interface HeaderProps {
   children: React.ReactNode;
   className?: string;
 }
 
 function Header({ children, className }: HeaderProps) {
+  const player = usePlayer();
   const router = useRouter();
   const { onOpen } = useAuthModal();
 
@@ -26,6 +28,7 @@ function Header({ children, className }: HeaderProps) {
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
+    player.reset();
     router.refresh();
     if (error) {
       toast.error(error.message);
@@ -40,12 +43,14 @@ function Header({ children, className }: HeaderProps) {
         <div className='hidden md:flex gap-x-2 items-center'>
           <button
             onClick={() => router.back()}
-            className='rounded-full bg-black flex items-center justify-center hover:opacity-75 transition'>
+            className='rounded-full bg-black flex items-center justify-center hover:opacity-75 transition'
+          >
             <RxCaretLeft size={35} className='text-white' />
           </button>
           <button
             onClick={() => router.forward()}
-            className='rounded-full bg-black flex items-center justify-center hover:opacity-75 transition'>
+            className='rounded-full bg-black flex items-center justify-center hover:opacity-75 transition'
+          >
             <RxCaretRight size={35} className='text-white' />
           </button>
         </div>
