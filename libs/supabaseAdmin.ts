@@ -73,7 +73,6 @@ const createOrRetrieveCustomer = async ({ email, uuid }: { email: string; uuid: 
 };
 
 const copyBillingDetailsToCustomer = async (uuid: string, payment_method: Stripe.PaymentMethod) => {
-  //Todo: check this assertion
   const customer = payment_method.customer as string;
   const { name, phone, address } = payment_method.billing_details;
   if (!name || !phone || !address) return;

@@ -1,6 +1,7 @@
 'use client';
 
 import useLoadImage from '@/hooks/useLoadImage';
+import usePlayer from '@/hooks/usePlayer';
 import { Song } from '@/types';
 import Image from 'next/image';
 
@@ -11,16 +12,19 @@ type Props = {
 
 function MediaItem({ song, onClick }: Props) {
   const imageUrl = useLoadImage(song);
-
+  const player = usePlayer();
   const handleClick = () => {
     if (onClick) {
       return onClick(song.id);
     }
+
+    player.setId(song.id);
   };
   return (
     <div
       onClick={handleClick}
-      className='flex items-center gap-x-3 cursor-pointer hover:bg-neutral-800 w-full rounded-md'>
+      className='flex items-center gap-x-3 cursor-pointer hover:bg-neutral-800 w-full rounded-md'
+    >
       <div className='relative rounded-md min-h-[48px] min-w-[48px] overflow-hidden'>
         <Image
           src={(imageUrl as string) || '/images/liked.png'}
